@@ -1,5 +1,6 @@
-package com.pvsb.personalcostsvalidator
+package com.pvsb.personalcostsvalidator.main
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pvsb.personalcostsvalidator.entity.Expense
@@ -18,14 +19,17 @@ class MainViewModel @Inject constructor(
     private val repository: ExpensesRepository
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(listOf<Expense>())
+    private val _state = MutableStateFlow(MainState())
     val state = _state.asStateFlow()
 
     fun fetchExpenses() {
         viewModelScope.launch {
             repository.getExpenses().onEach { list ->
                 _state.update {
-                    list
+                    it.copy(
+                        expenses = list,
+                        totalSum = list.sumOf { value -> value.value }
+                    )
                 }
             }.collect()
         }
