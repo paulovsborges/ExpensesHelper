@@ -3,6 +3,7 @@ package com.pvsb.personalcostsvalidator
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,6 +15,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -40,56 +43,52 @@ import com.pvsb.personalcostsvalidator.repository.ExpensesRepository
 import com.pvsb.personalcostsvalidator.repository.ExpensesSqlDelightRepository
 import com.pvsb.personalcostsvalidator.ui.theme.PersonalCostsValidatorTheme
 import com.pvsb.personalcostsvalidator.widget.ui.theme.AppStyle
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val repository: ExpensesRepository by lazy {
-        val driver = AndroidSqliteDriver(
-            schema = ExpensesHelperDataBase.Schema,
-            context = this,
-            name = "expensehelper.db"
-        )
-
-        val database = ExpensesHelperDataBase(driver)
-
-        ExpensesSqlDelightRepository(database, Dispatchers.IO)
-    }
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             PersonalCostsValidatorTheme {
-                // A surface container using the 'background' color from the theme
 
-                val scope = rememberCoroutineScope()
-                var count by remember {
-                    mutableStateOf(-1)
-                }
-                LaunchedEffect(key1 = repository) {
-                    scope.launch {
-                        count = repository.getAll().size
-//                        repository.getExpenses().collectAsState(initial = listOf())
-                    }
-                }
-
-
+                val state = viewModel.state.collectAsState()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    LazyColumn(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(AppStyle.AppColors.background)
+                    ) {
+                        items(items = state.value) {
 
-                    LaunchedEffect(key1 = scope) {
-                        scope.launch {
-                            count = repository.getAll().size
+                            Column(
+                                modifier = Modifier.padding(
+                                    start = 10.dp,
+                                    top = 10.dp,
+                                    end = 10.dp
+                                )
+                            ) {
+                                ExpenseItem(
+                                    title = it.title,
+                                    value = it.value,
+                                    date = it.createdAt?.formatToStringDate() ?: ""
+                                )
+                            }
                         }
                     }
-
-                    Greeting("Expenses count $count")
                 }
             }
+
+            viewModel.fetchExpenses()
         }
     }
 
@@ -179,21 +178,5 @@ class MainActivity : ComponentActivity() {
         ) {
             ExpenseItem(title = "Uber", value = 22.80, date = "10/11/2023")
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = name,
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PersonalCostsValidatorTheme {
-        Greeting("Android")
     }
 }
