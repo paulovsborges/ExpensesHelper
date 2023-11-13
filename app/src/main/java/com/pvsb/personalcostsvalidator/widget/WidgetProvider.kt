@@ -48,7 +48,6 @@ class WidgetProvider : AppWidgetProvider() {
         )
     }
 
-
     companion object {
         const val VALUE_TO_REGISTER_TAG = "VALUE_TO_REGISTER_TAG"
     }

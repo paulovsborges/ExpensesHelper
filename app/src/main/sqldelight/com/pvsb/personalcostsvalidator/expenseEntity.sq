@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS ExpenseEntity(
+    id INTEGER NOT NULL PRIMARY KEY,
+    title TEXT NOT NULL,
+    createdAt TEXT NOT NULL,
+    value  REAL NOT NULL -- store double
+);
+
+insertOrReplace:
+INSERT OR REPLACE INTO ExpenseEntity VALUES ?;
+
+getAll:
+SELECT * FROM ExpenseEntity;
+
+delete:
+DELETE FROM ExpenseEntity WHERE id = :id;

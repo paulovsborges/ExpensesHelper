@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("app.cash.sqldelight") version ("2.0.0-alpha05")
 }
 
 android {
@@ -51,6 +52,9 @@ android {
 
 dependencies {
 
+    implementation("app.cash.sqldelight:android-driver:2.0.0-alpha05")
+    implementation("app.cash.sqldelight:coroutines-extensions:2.0.0-alpha05")
+
     implementation("androidx.work:work-runtime-ktx:2.8.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.core:core-ktx:1.9.0")
@@ -70,4 +74,12 @@ dependencies {
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+}
+
+sqldelight {
+    databases {
+        create("ExpensesHelperDataBase") {
+            packageName.set("com.pvsb.personalcostsvalidator")
+        }
+    }
 }
