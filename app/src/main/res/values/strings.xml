@@ -7,4 +7,7 @@
     <string name="title_activity_testing">TestingActivity</string>
 
     <string name="register_value_label">Enter a value to register</string>
+
+    <string name="expense_card_title_label">Title</string>
+    <string name="expense_card_value_label">Value</string>
 </resources>
