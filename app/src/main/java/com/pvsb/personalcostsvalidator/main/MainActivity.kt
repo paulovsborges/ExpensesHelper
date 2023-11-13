@@ -32,6 +32,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
@@ -59,20 +60,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             PersonalCostsValidatorTheme {
                 val state = viewModel.state.collectAsState()
+                viewModel.fetchExpenses()
                 Content(state.value)
             }
         }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("", "## on pause")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("", "## on resume")
-        viewModel.fetchExpenses()
     }
 
     @Composable
@@ -238,35 +229,48 @@ class MainActivity : ComponentActivity() {
         value: Double,
         onAddExpenseClick: () -> Unit
     ) {
-        Row(
+
+        Column(
             modifier = modifier
                 .fillMaxWidth()
                 .height(80.dp)
-                .background(AppStyle.AppColors.secondary),
-            verticalAlignment = Alignment.CenterVertically
+                .background(AppStyle.AppColors.secondary)
         ) {
 
-            Spacer(modifier = Modifier.width(10.dp))
-
-            Text(
-                text = "$${value}",
-                style = AppStyle.TextStyles.titleTextStyle,
-                modifier = Modifier.alpha(0.8f)
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(1.dp)
+                    .background(AppStyle.AppColors.lightBlue)
             )
 
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(end = 10.dp),
-                contentAlignment = Alignment.CenterEnd
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxSize()
             ) {
-                Button(
-                    onClick = onAddExpenseClick,
-                    colors = ButtonDefaults.buttonColors(
-                        AppStyle.AppColors.lightBlue
-                    )
+
+                Spacer(modifier = Modifier.width(10.dp))
+
+                Text(
+                    text = "$${value}",
+                    style = AppStyle.TextStyles.titleTextStyle,
+                    modifier = Modifier.alpha(0.8f)
+                )
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(end = 10.dp),
+                    contentAlignment = Alignment.CenterEnd
                 ) {
-                    Text(text = stringResource(id = R.string.add_expense_button_label))
+                    Button(
+                        onClick = onAddExpenseClick,
+                        colors = ButtonDefaults.buttonColors(
+                            AppStyle.AppColors.lightBlue
+                        )
+                    ) {
+                        Text(text = stringResource(id = R.string.add_expense_button_label))
+                    }
                 }
             }
         }
