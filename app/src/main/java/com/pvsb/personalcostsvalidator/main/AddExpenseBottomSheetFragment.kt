@@ -1,5 +1,6 @@
 package com.pvsb.personalcostsvalidator.main
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +46,17 @@ import dagger.hilt.android.AndroidEntryPoint
 class AddExpenseBottomSheetFragment : BottomSheetDialogFragment() {
 
     private val viewModel: MainViewModel by viewModels()
+
+    interface AddExpenseCallback {
+        fun onDismiss()
+    }
+
+    var callback: AddExpenseCallback? = null
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        callback?.onDismiss()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

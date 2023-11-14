@@ -1,8 +1,6 @@
 package com.pvsb.personalcostsvalidator.main
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -37,13 +35,15 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.lifecycleScope
 import com.pvsb.personalcostsvalidator.R
 import com.pvsb.personalcostsvalidator.entity.Expense
 import com.pvsb.personalcostsvalidator.formatToStringDate
 import com.pvsb.personalcostsvalidator.ui.theme.AppStyle
 import com.pvsb.personalcostsvalidator.ui.theme.PersonalCostsValidatorTheme
-import com.pvsb.personalcostsvalidator.widget.FloatingRegisterValueActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.Date
 
 @AndroidEntryPoint
@@ -57,14 +57,10 @@ class MainActivity : AppCompatActivity() {
         setContent {
             PersonalCostsValidatorTheme {
                 val state = viewModel.state.collectAsState()
+                viewModel.fetchExpenses()
                 Content(state.value)
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.fetchExpenses()
     }
 
     @Composable
@@ -115,7 +111,16 @@ class MainActivity : AppCompatActivity() {
                     InfoBar(
                         value = state.totalSum,
                         onAddExpenseClick = {
-                            AddExpenseBottomSheetFragment().show(
+                            val dialog = AddExpenseBottomSheetFragment()
+
+                            dialog.callback =
+                                object : AddExpenseBottomSheetFragment.AddExpenseCallback {
+                                    override fun onDismiss() {
+                                        viewModel.updateState()
+                                    }
+                                }
+
+                            dialog.show(
                                 this@MainActivity.supportFragmentManager,
                                 AddExpenseBottomSheetFragment::class.java.simpleName
                             )

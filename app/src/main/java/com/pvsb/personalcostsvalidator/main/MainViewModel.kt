@@ -1,5 +1,6 @@
 package com.pvsb.personalcostsvalidator.main
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pvsb.personalcostsvalidator.entity.Expense
@@ -45,6 +46,19 @@ class MainViewModel @Inject constructor(
                     value = valueToRegister
                 )
             )
+        }
+    }
+
+    fun updateState() {
+        viewModelScope.launch {
+            val list = repository.getAll()
+
+            _state.update {
+                it.copy(
+                    expenses = list,
+                    totalSum = list.sumOf { value -> value.value }
+                )
+            }
         }
     }
 }
