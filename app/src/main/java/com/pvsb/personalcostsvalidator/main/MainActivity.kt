@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -46,7 +47,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.util.Date
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
@@ -56,16 +57,21 @@ class MainActivity : ComponentActivity() {
         setContent {
             PersonalCostsValidatorTheme {
                 val state = viewModel.state.collectAsState()
-                viewModel.fetchExpenses()
                 Content(state.value)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchExpenses()
     }
 
     @Composable
     private fun Content(
         state: MainState
     ) {
+
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
@@ -109,11 +115,9 @@ class MainActivity : ComponentActivity() {
                     InfoBar(
                         value = state.totalSum,
                         onAddExpenseClick = {
-                            startActivity(
-                                Intent(
-                                    this@MainActivity,
-                                    FloatingRegisterValueActivity::class.java
-                                )
+                            AddExpenseBottomSheetFragment().show(
+                                this@MainActivity.supportFragmentManager,
+                                AddExpenseBottomSheetFragment::class.java.simpleName
                             )
                         }
                     )

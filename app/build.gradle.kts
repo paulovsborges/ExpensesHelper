@@ -60,6 +60,9 @@ dependencies {
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     kapt("com.google.dagger:hilt-compiler:2.46.1")
 
+    implementation("com.google.android.material:material:1.10.0")
+
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     // Sql delight
     implementation("app.cash.sqldelight:android-driver:2.0.0-alpha05")

@@ -1,6 +1,5 @@
 package com.pvsb.personalcostsvalidator.main
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pvsb.personalcostsvalidator.entity.Expense
@@ -12,6 +11,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -35,4 +35,16 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    fun registerExpense(valueToRegister: Double) {
+        viewModelScope.launch {
+            repository.registerExpense(
+                Expense(
+                    id = repository.getAll().size,
+                    title = "Uber",
+                    createdAt = Date(),
+                    value = valueToRegister
+                )
+            )
+        }
+    }
 }

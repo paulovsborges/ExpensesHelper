@@ -2,6 +2,7 @@
 <resources>
 
     <style name="Theme.PersonalCostsValidator" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="LauncherTheme" parent="Theme.AppCompat.DayNight.NoActionBar" />
 
     <style name="FloatingActivityTheme" parent="android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
