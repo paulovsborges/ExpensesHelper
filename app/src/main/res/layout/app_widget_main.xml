@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llRoot"
     android:layout_width="300dp"
     android:layout_height="50dp"
@@ -7,11 +8,24 @@
     android:orientation="horizontal">
 
     <TextView
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/tvRegisterValue"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginStart="20dp"
         android:hint="@string/widget_value_hint"
+        android:textAlignment="center"
         android:textColorHint="@color/gray" />
+
+    <Button
+        android:id="@+id/btnOpenApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:background="@color/light_blue"
+        android:text="@string/widget_button_label_open_app"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
 </LinearLayout>

@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Expenses helper</string>
 
-    <string name="widget_value_hint">Enter to register a value</string>
+    <string name="widget_value_hint">Click to register a value</string>
+    <string name="widget_button_label_open_app">Access app</string>
     <string name="widget_button_label_register">Register</string>
     <string name="widget_provider_description">Values registration</string>
     <string name="title_activity_testing">TestingActivity</string>
