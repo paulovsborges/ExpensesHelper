@@ -28,7 +28,7 @@ class MainViewModel @Inject constructor(
             repository.getExpenses().onEach { list ->
                 _state.update {
                     it.copy(
-                        expenses = list,
+                        expenses = list.sortedByDescending { expense -> expense.createdAt },
                         totalSum = list.sumOf { value -> value.value }
                     )
                 }
