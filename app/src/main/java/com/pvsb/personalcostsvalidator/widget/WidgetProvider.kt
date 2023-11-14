@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.RemoteViews
 import com.pvsb.personalcostsvalidator.R
 import com.pvsb.personalcostsvalidator.main.MainActivity
@@ -18,8 +17,6 @@ class WidgetProvider : AppWidgetProvider() {
         appWidgetIds: IntArray?
     ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
-
-        Log.d("", "## aaaa ")
 
         val remoteView = RemoteViews(
             context?.packageName,
