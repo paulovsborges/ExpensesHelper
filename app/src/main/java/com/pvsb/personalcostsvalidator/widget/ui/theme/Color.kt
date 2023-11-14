@@ -1,4 +1,4 @@
-package com.pvsb.personalcostsvalidator.widget.ui.theme
+package com.pvsb.personalcostsvalidator.ui.theme
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle

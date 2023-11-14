@@ -1,4 +1,4 @@
-package com.pvsb.personalcostsvalidator.widget.ui.theme
+package com.pvsb.personalcostsvalidator.ui.theme
 
 import android.app.Activity
 import android.os.Build

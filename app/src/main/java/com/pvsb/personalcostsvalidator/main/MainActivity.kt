@@ -2,8 +2,6 @@ package com.pvsb.personalcostsvalidator.main
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -22,7 +20,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -32,7 +29,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
@@ -43,9 +39,9 @@ import androidx.compose.ui.unit.sp
 import com.pvsb.personalcostsvalidator.R
 import com.pvsb.personalcostsvalidator.entity.Expense
 import com.pvsb.personalcostsvalidator.formatToStringDate
+import com.pvsb.personalcostsvalidator.ui.theme.AppStyle
 import com.pvsb.personalcostsvalidator.ui.theme.PersonalCostsValidatorTheme
 import com.pvsb.personalcostsvalidator.widget.FloatingRegisterValueActivity
-import com.pvsb.personalcostsvalidator.widget.ui.theme.AppStyle
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Date
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PersonalCostsValidator</string>
+    <string name="app_name">Expenses helper</string>
 
     <string name="widget_value_hint">Enter to register a value</string>
     <string name="widget_button_label_register">Register</string>
@@ -11,4 +11,5 @@
     <string name="expense_card_title_label">Title</string>
     <string name="expense_card_value_label">Value</string>
     <string name="add_expense_button_label">Add</string>
+    <string name="title_activity_widget_configuration">WidgetConfigurationActivity</string>
 </resources>

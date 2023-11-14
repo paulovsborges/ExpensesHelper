@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:configure="com.pvsb.personalcostsvalidator.widget.WidgetProvider"
+    android:configure="com.pvsb.personalcostsvalidator.widget.WidgetConfigurationActivity"
     android:description="@string/widget_provider_description"
     android:initialLayout="@layout/app_widget_main"
     android:minWidth="300dp"
-    android:minHeight="80dp"
+    android:minHeight="50dp"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="86400000"
     android:widgetCategory="home_screen"

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
-        android:allowBackup="true"
         android:name=".MyApp"
+        android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -13,14 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PersonalCostsValidator"
         tools:targetApi="31">
-
         <activity
-            android:excludeFromRecents="true"
+            android:name=".widget.WidgetConfigurationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_widget_configuration"
+            android:theme="@style/Theme.PersonalCostsValidator" >
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+
+        </activity>
+        <activity
             android:name=".widget.FloatingRegisterValueActivity"
+            android:excludeFromRecents="true"
             android:exported="false"
             android:label="@string/title_activity_testing"
             android:theme="@style/FloatingActivityTheme" />
-
         <activity
             android:name=".main.MainActivity"
             android:exported="true"

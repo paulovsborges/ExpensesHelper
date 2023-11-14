@@ -56,6 +56,8 @@ dependencies {
 
     //HIlt
     implementation("com.google.dagger:hilt-android:2.46.1")
+    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     kapt("com.google.dagger:hilt-compiler:2.46.1")
 
 

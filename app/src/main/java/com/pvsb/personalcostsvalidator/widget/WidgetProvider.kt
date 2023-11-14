@@ -1,10 +1,12 @@
 package com.pvsb.personalcostsvalidator.widget
 
+import android.app.Activity.RESULT_OK
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.widget.RemoteViews
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequestBuilder
@@ -20,6 +22,8 @@ class WidgetProvider : AppWidgetProvider() {
     ) {
         super.onUpdate(context, appWidgetManager, appWidgetIds)
 
+        Log.d("", "## aaaa ")
+
         val remoteView = RemoteViews(
             context?.packageName,
             R.layout.app_widget_main
@@ -29,8 +33,12 @@ class WidgetProvider : AppWidgetProvider() {
                 registerValuePendingIntent(context = context)
             )
         }
+//
+//        setResult(RESULT_OK, Intent().putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mWidgetId))
 
-        appWidgetManager?.updateAppWidget(appWidgetIds, remoteView)
+        appWidgetIds?.forEach { id ->
+            appWidgetManager?.updateAppWidget(id, remoteView)
+        }
     }
 
     private fun registerValuePendingIntent(

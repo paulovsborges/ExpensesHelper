@@ -47,8 +47,8 @@ import com.pvsb.personalcostsvalidator.ExpensesHelperDataBase
 import com.pvsb.personalcostsvalidator.R
 import com.pvsb.personalcostsvalidator.repository.ExpensesRepository
 import com.pvsb.personalcostsvalidator.repository.ExpensesSqlDelightRepository
-import com.pvsb.personalcostsvalidator.widget.ui.theme.AppStyle
-import com.pvsb.personalcostsvalidator.widget.ui.theme.PersonalCostsValidatorTheme
+import com.pvsb.personalcostsvalidator.ui.theme.AppStyle
+import com.pvsb.personalcostsvalidator.ui.theme.PersonalCostsValidatorTheme
 import kotlinx.coroutines.Dispatchers
 
 class FloatingRegisterValueActivity : ComponentActivity() {
