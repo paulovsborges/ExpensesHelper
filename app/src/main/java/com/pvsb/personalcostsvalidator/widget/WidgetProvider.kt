@@ -1,6 +1,5 @@
 package com.pvsb.personalcostsvalidator.widget
 
-import android.app.Activity.RESULT_OK
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
@@ -8,9 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.RemoteViews
-import androidx.work.Data
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
 import com.pvsb.personalcostsvalidator.R
 
 class WidgetProvider : AppWidgetProvider() {

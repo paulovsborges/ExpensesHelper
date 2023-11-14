@@ -9,7 +9,6 @@ import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -41,15 +40,10 @@ import androidx.compose.ui.unit.dp
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.pvsb.personalcostsvalidator.BackgroundValueRegisterWorker
-import com.pvsb.personalcostsvalidator.ExpensesHelperDataBase
 import com.pvsb.personalcostsvalidator.R
-import com.pvsb.personalcostsvalidator.repository.ExpensesRepository
-import com.pvsb.personalcostsvalidator.repository.ExpensesSqlDelightRepository
 import com.pvsb.personalcostsvalidator.ui.theme.AppStyle
 import com.pvsb.personalcostsvalidator.ui.theme.PersonalCostsValidatorTheme
-import kotlinx.coroutines.Dispatchers
 
 class FloatingRegisterValueActivity : ComponentActivity() {
 
